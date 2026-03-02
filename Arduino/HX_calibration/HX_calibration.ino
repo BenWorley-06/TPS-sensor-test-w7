@@ -10,8 +10,8 @@
 HX711 myScale;
 
 //  adjust pins if needed.
-uint8_t dataPin = 6;
-uint8_t clockPin = 7;
+uint8_t dataPin = 2;
+uint8_t clockPin = 3;
 
 
 void setup()

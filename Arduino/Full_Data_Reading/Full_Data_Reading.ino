@@ -6,7 +6,7 @@
 #define SPI_PORT SPI // Your desired SPI port.       Used only when "USE_SPI" is defined
 #define CS_PIN 2     // Which pin you connect CS to. Used only when "USE_SPI" is defined
 
-#define WIRE_PORT Wire // Your desired Wire port.      Used when "USE_SPI" is not defined
+#define WIRE_PORT 18 // Your desired Wire port.      Used when "USE_SPI" is not defined
 // The value of the last bit of the I2C address.
 // On the SparkFun 9DoF IMU breakout the default is 1, and when the ADR jumper is closed the value becomes 0
 #define AD0_VAL 1
@@ -17,8 +17,8 @@ ICM_20948_SPI myICM; // If using SPI create an ICM_20948_SPI object
 ICM_20948_I2C myICM; // Otherwise create an ICM_20948_I2C object
 #endif
 
-const uint8_t  DATA_PIN;
-const uint8_t CLOCK_PIN;
+const uint8_t  DATA_PIN = 2;
+const uint8_t CLOCK_PIN = 3;
 
 const int t_delay = 250;
 
@@ -30,8 +30,8 @@ void setup()
   Serial.begin(115200);
   // Pressure Sensor Setup
   pressure_sensor.begin(DATA_PIN,CLOCK_PIN);
-  pressure_sensor.set_offset(<calibrated value>);
-  pressure_sensor.set_scale(<calibrated value>); 
+  pressure_sensor.set_offset(58269);
+  pressure_sensor.set_scale(-84.412163); 
   pressure_sensor.tare();
   // IMU Setup
   #ifdef USE_SPI

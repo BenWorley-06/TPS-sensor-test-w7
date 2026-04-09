@@ -6,5 +6,8 @@ When using pressure sensor always call sensor_inst.set_offset(offset value) and 
 /
 Instructions to get started:\
 Run HX calibration for the pressure sensor to get offset and scale factor values.\
+OFFSET: 58269\
+SCALE: -84.412163\
+\
 Configure IO pins\
 Run IMU starter code and pressure sensor test to read values from sensors.

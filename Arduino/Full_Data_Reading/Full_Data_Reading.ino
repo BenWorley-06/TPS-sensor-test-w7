@@ -1,7 +1,7 @@
 #include "ICM_20948.h" // Click here to get the library: http://librarymanager/All#SparkFun_ICM_20948_IMU
 #include "HX711.h"
 
-//#define USE_SPI       // Uncomment this to use SPI
+#define USE_SPI       // Uncomment this to use SPI
 
 #define SPI_PORT SPI // Your desired SPI port.       Used only when "USE_SPI" is defined
 #define CS_PIN 2     // Which pin you connect CS to. Used only when "USE_SPI" is defined
@@ -30,8 +30,8 @@ void setup()
   Serial.begin(115200);
   // Pressure Sensor Setup
   pressure_sensor.begin(DATA_PIN,CLOCK_PIN);
-  pressure_sensor.set_offset(58269);
-  pressure_sensor.set_scale(-84.412163); 
+  pressure_sensor.set_offset(4019569);
+  pressure_sensor.set_scale(-35463.812500);
   pressure_sensor.tare();
   // IMU Setup
   #ifdef USE_SPI
@@ -77,7 +77,7 @@ void loop()
                              //    printRawAGMT( myICM.agmt );     // Uncomment this to see the raw values, taken directly from the agmt structure
     printScaledAGMT(&myICM); // This function takes into account the scale settings from when the measurement was made to calculate the values with units
     // Pressure
-    Serial.print(", Pressure: ")
+    Serial.print(", Pressure: ");
     Serial.println(pressure_sensor.get_units(5));
     delay(t_delay);
   }

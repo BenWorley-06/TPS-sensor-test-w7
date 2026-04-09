@@ -1,12 +1,12 @@
 #include "ICM_20948.h" // Click here to get the library: http://librarymanager/All#SparkFun_ICM_20948_IMU
 #include "HX711.h"
 
-#define USE_SPI       // Uncomment this to use SPI
+//#define USE_SPI       // Uncomment this to use SPI
 
 #define SPI_PORT SPI // Your desired SPI port.       Used only when "USE_SPI" is defined
 #define CS_PIN 2     // Which pin you connect CS to. Used only when "USE_SPI" is defined
 
-#define WIRE_PORT 18 // Your desired Wire port.      Used when "USE_SPI" is not defined
+#define WIRE_PORT Wire // Your desired Wire port.      Used when "USE_SPI" is not defined
 // The value of the last bit of the I2C address.
 // On the SparkFun 9DoF IMU breakout the default is 1, and when the ADR jumper is closed the value becomes 0
 #define AD0_VAL 1
@@ -30,8 +30,8 @@ void setup()
   Serial.begin(115200);
   // Pressure Sensor Setup
   pressure_sensor.begin(DATA_PIN,CLOCK_PIN);
-  pressure_sensor.set_offset(4019569);
-  pressure_sensor.set_scale(-35463.812500);
+  pressure_sensor.set_offset(8235729);
+  pressure_sensor.set_scale(8.23);
   pressure_sensor.tare();
   // IMU Setup
   #ifdef USE_SPI

@@ -45,8 +45,11 @@ void calibrate()
 
   Serial.println("Determine zero weight offset");
   //  average 20 measurements.
-  myScale.tare(20);
-  int32_t offset = myScale.get_offset();
+  //myScale.tare(20);
+  //int32_t offset = myScale.get_offset();
+
+  //  Scraped old built in function that uses an average and instead use a median to get rid of spikes.
+  int32_t offset = getMedian(20);
 
   Serial.print("OFFSET: ");
   Serial.println(offset);
@@ -73,8 +76,15 @@ void calibrate()
   }
   Serial.print("WEIGHT: ");
   Serial.println(weight);
-  myScale.calibrate_scale(weight, 20);
-  float scale = myScale.get_scale();
+  //myScale.calibrate_scale(weight, 20);
+  //float scale = myScale.get_scale();
+
+  // Find the raw weight measured by scale
+  long true_weight = getMedian(20);
+  // difference between true weight and the offset value
+  long difference = true_weight-offset;
+  // dividing the expected weight by the measured weight difference gives us the scaling factor that needs to be aplied to ensure accurate measurements
+  float scale = (weight/difference)
 
   Serial.print("SCALE:  ");
   Serial.println(scale, 6);

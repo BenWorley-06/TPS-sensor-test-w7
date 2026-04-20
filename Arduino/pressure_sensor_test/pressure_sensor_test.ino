@@ -8,8 +8,8 @@ HX711 pressure_sensor; // Sensor Object
 void setup() {
   Serial.begin(115200);
   pressure_sensor.begin(DATA_PIN,CLOCK_PIN);
-  pressure_sensor.set_offset(8235729);
-  pressure_sensor.set_scale(8.23);
+  pressure_sensor.set_offset(0);
+  pressure_sensor.set_scale(1);
   pressure_sensor.tare();
 }
 
